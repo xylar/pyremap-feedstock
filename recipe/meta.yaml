@@ -12,17 +12,17 @@ source:
 build:
   number: 0
   script: "{{ PYTHON }} -m pip install . -vv"
-  skip: true  # [win]
+  skip: true  # [win and py<36]
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
   run:
-    - python >=3.6
+    - python
     - numpy
     - scipy
-    - netCDF4
+    - netcdf4
     - xarray >=0.10.0
     - dask
     - nco >=4.8.1
