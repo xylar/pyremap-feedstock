@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: pyremap
+  version: "2.3.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/MPAS-Dev/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: 31d32da6894389bdebf3ce072f55a6a44fc28edbc2add06f3260bf4a6eb34805
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - scipy
+    - netcdf4
+    - xarray >=0.10.0
+    - dask
+    - nco >=4.8.1
+    - esmf
+    - pyproj
+
+tests:
+  - python:
+      imports:
+        - pyremap
+      pip_check: false
+      python_version: ${{ python_min }}
+  - files:
+      source:
+        - tests
+    requirements:
+      run:
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - pytest --pyargs tests
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Python remapping tools for climate and earth system models.
+  homepage: https://github.com/MPAS-Dev/pyremap
+  repository: https://github.com/MPAS-Dev/pyremap
+  documentation: https://pyremap.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - xylar
