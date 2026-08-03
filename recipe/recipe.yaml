@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pyremap
-  version: "2.3.0"
+  version: "2.4.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/MPAS-Dev/${{ name }}/archive/${{ version }}.tar.gz
-  sha256: 31d32da6894389bdebf3ce072f55a6a44fc28edbc2add06f3260bf4a6eb34805
+  sha256: 6a16e3dda988754f9d52b5b55f003b1997f9bd590e1578e873351dae3a276a8f
 
 build:
   number: 0
